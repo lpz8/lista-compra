@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de la Compra</title>
+</head>
+<body>
+  <h1>Lista de la Compra</h1>
+  <input type="text" id="itemInput" placeholder="Añadir ítem">
+  <button onclick="addItem()">Añadir</button>
+  <ul id="itemList"></ul>
+
+  <script>
+    async function addItem() {
+      const itemInput = document.getElementById('itemInput').value;
+      if (itemInput) {
+        await fetch('http://localhost:3000/api/items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: itemInput })
+        });
+        loadItems();
+        document.getElementById('itemInput').value = '';
+      }
+    }
+
+    async function loadItems() {
+      try {
+        const response = await fetch('http://localhost:3000/api/items');
+        const items = await response.json();
+        const itemList = document.getElementById('itemList');
+        itemList.innerHTML = '';
+        items.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.textContent = item.name;
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Eliminar';
+          deleteButton.onclick = () => deleteItem(index);
+          li.appendChild(deleteButton);
+          itemList.appendChild(li);
+        });
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+
+    async function deleteItem(id) {
+      await fetch(`http://localhost:3000/api/items/${id}`, { method: 'DELETE' });
+      loadItems();
+    }
+
+    loadItems();
+  </script>
+</body>
+</html>
