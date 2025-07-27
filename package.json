@@ -37,5 +37,17 @@
     "statuses": "^2.0.2",
     "type-is": "^2.0.1",
     "utils-merge": "^1.0.1"
-  }
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpz8/lista-compra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpz8/lista-compra/issues"
+  },
+  "homepage": "https://github.com/lpz8/lista-compra#readme"
 }
