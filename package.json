@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "debug": "^4.4.1",
     "destroy": "^1.2.0",
+    "dotenv": "^17.2.1",
     "encodeurl": "^2.0.0",
     "express": "^4.21.2",
     "finalhandler": "^2.1.0",
